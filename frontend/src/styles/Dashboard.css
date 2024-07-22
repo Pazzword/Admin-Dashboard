@@ -1,0 +1,30 @@
+/* Dashboard.css */
+
+.chart {
+  width: 50%;
+  margin-bottom: 1rem;
+}
+.my-3 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.px-3 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.card {
+  margin: 0.5rem;
+  flex: 1;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

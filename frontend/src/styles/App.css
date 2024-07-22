@@ -1,0 +1,15 @@
+/* src/styles/App.css */
+.app-layout {
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.container {
+  padding: 20px;
+}

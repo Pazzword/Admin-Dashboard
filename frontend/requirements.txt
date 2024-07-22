@@ -1,0 +1,13 @@
+npm install react-router-dom
+
+npm install charts.js
+npm install react-chartjs-2
+
+npm install @nivo/core @nivo/bump
+
+npm install styled-components
+
+npm install react-table
+
+npm install antd --save
+npm install react-icons
