@@ -3,7 +3,7 @@ npm install react-router-dom
 npm install charts.js
 npm install react-chartjs-2
 
-npm install @nivo/core @nivo/bump
+npm install @emotion/react @emotion/styled @mui/x-data-grid @mui/icons-material 
 
 npm install styled-components
 

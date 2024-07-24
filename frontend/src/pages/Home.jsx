@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import api from "../api";
 import Note from "../components/Note";
 import "../styles/Home.css";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home() {
