@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { ColorModeContext, useMode } from './theme';
+import "./styles/App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
-import DataTable from "./components/DataTable/DataTable"; 
-import ProtectedRoute from "./components/ProtectedRoute";
-import CustomSidebar from "./components/SidebarNavbar/CustomSidebar";
-import "./styles/App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import DataTable from "./components/DataTable/DataTable";
+import Sidebar from "./components/SidebarNavbar/CustomSidebar"; 
+import Topbar from './components/SidebarNavbar/Topbar';
 
 function Logout() {
   localStorage.clear();
@@ -22,53 +25,61 @@ function RegisterAndLogout() {
 }
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <CustomSidebar>
-                <div className="container">
-                  <Home />
-                </div>
-              </CustomSidebar>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <CustomSidebar>
-                <div className="container">
-                  <Dashboard />
-                </div>
-              </CustomSidebar>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/data-table"
-          element={
-            <ProtectedRoute>
-              <CustomSidebar>
-                <div className="container">
-                  <DataTable /> 
-                </div>
-              </CustomSidebar>
-            </ProtectedRoute>
-          }
-        />
-        
+  const [theme, colorMode] = useMode();
+  const [isSidebar, setIsSidebar] = useState(true);
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/register" element={<RegisterAndLogout />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <BrowserRouter>
+          <div className="app">
+            <Topbar setIsSidebar={setIsSidebar} className="topbar" />
+            <div className="main-container">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute>
+                      <div className="protected-content">
+                        <Sidebar isSidebar={isSidebar} className="sidebar" />
+                        <Home />
+                      </div>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <div className="protected-content">
+                        <Sidebar isSidebar={isSidebar} className="sidebar" />
+                        <Dashboard />
+                      </div>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/data-table"
+                  element={
+                    <ProtectedRoute>
+                      <div className="protected-content">
+                        <Sidebar isSidebar={isSidebar} className="sidebar" />
+                        <DataTable />
+                      </div>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/register" element={<RegisterAndLogout />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+          </div>
+        </BrowserRouter>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 

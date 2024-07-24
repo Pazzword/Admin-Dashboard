@@ -37,6 +37,9 @@ function Form({ route, method }) {
     const handleNavigateToRegister = () => {
         navigate("/register");
     };
+    const handleNavigateToLogin = () => {
+        navigate("/login");
+    };
 
     return (
         <form onSubmit={handleSubmit} className="form-container">
@@ -68,6 +71,7 @@ function Form({ route, method }) {
                 >
                     Register
                 </button>
+                
             )}
         </form>
     );
