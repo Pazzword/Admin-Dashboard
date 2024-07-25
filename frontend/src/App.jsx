@@ -7,13 +7,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import DataTable from "./components/DataTable/DataTable";
 import Sidebar from "./components/SidebarNavbar/Sidebar"; 
 import Topbar from './components/SidebarNavbar/Topbar';
 import Note from "./pages/Notes";
+import LineChart from "./components/LineChart/LineChart";
 
 function Logout() {
   localStorage.clear();
@@ -43,8 +43,8 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <div className="protected-content">
-                        <Sidebar isSidebar={isSidebar} className="sidebar" />
-                        <Home />
+                        <Sidebar isSidebar={isSidebar} className="dashboard" />
+                        <Dashboard />
                       </div>
                     </ProtectedRoute>
                   }
@@ -78,6 +78,17 @@ function App() {
                       <div className="protected-content">
                         <Sidebar isSidebar={isSidebar} className="sidebar" />
                         <Note />
+                      </div>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/line"
+                  element={
+                    <ProtectedRoute>
+                      <div className="protected-content">
+                        <Sidebar isSidebar={isSidebar} className="sidebar" />
+                        <LineChart />
                       </div>
                     </ProtectedRoute>
                   }
