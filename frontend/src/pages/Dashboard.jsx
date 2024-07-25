@@ -11,6 +11,7 @@ const Dashboard = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
+    
     <Box sx={{ width: '100%', padding: 2, backgroundColor: colors.primary[400] }}>
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
         <Typography variant="h4" color={colors.grey[100]}>Dashboard Overview</Typography>
