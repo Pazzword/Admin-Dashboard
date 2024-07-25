@@ -11,8 +11,9 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import DataTable from "./components/DataTable/DataTable";
-import Sidebar from "./components/SidebarNavbar/CustomSidebar"; 
+import Sidebar from "./components/SidebarNavbar/Sidebar"; 
 import Topbar from './components/SidebarNavbar/Topbar';
+import Note from "./pages/Notes";
 
 function Logout() {
   localStorage.clear();
@@ -66,6 +67,17 @@ function App() {
                       <div className="protected-content">
                         <Sidebar isSidebar={isSidebar} className="sidebar" />
                         <DataTable />
+                      </div>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/note"
+                  element={
+                    <ProtectedRoute>
+                      <div className="protected-content">
+                        <Sidebar isSidebar={isSidebar} className="sidebar" />
+                        <Note />
                       </div>
                     </ProtectedRoute>
                   }
