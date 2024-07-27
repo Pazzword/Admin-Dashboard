@@ -62,7 +62,7 @@ function DataTable() {
   }, [search, sortedContacts]);
 
   return (
-    <div>
+    <div width="100%">
       <Container>
         <h1 className='text-center mt-4'>Contact Keeper</h1>
         <Form>

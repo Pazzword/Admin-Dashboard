@@ -13,7 +13,7 @@ import DataTable from "./components/DataTable/DataTable";
 import Sidebar from "./components/SidebarNavbar/Sidebar"; 
 import Topbar from './components/SidebarNavbar/Topbar';
 import Note from "./pages/Notes";
-import LineChart from "./components/LineChart/LineChart";
+import LineChart from "./components/LineChart";
 
 function Logout() {
   localStorage.clear();

@@ -4,8 +4,8 @@ import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import DashboardOutlined from "@mui/icons-material/DashboardOutlined";
+import SaveOutlined from "@mui/icons-material/SaveOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -96,7 +96,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={`../../assets/cat.jpeg`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -120,7 +120,7 @@ const Sidebar = () => {
             <Item
               title="Dashboard"
               to="/dashboard"
-              icon={<HomeOutlinedIcon />}
+              icon={<DashboardOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -135,7 +135,7 @@ const Sidebar = () => {
             <Item
               title="Project Data"
               to="/data-table"
-              icon={<PeopleOutlinedIcon />}
+              icon={<SaveOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
