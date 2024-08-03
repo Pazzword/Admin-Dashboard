@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'bigquery_integration',
     'datatable_api',
-    'time_api'
+    'time_api',
+    'users_data'
 ]
 
 MIDDLEWARE = [

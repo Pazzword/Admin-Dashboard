@@ -1,0 +1,10 @@
+
+python manage.py shell
+
+
+from users_data.models import Profile
+
+profiles = Profile.objects.all()
+
+for profile in profiles:
+    print(f'ID: {profile.id}, First Name: {profile.first_name}, Last Name: {profile.last_name}, Email: {profile.email}')
