@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './DigitalClock.css'; // Import the CSS file for styling
 
 const Time = () => {
     const [timeData, setTimeData] = useState(null);
@@ -24,13 +25,31 @@ const Time = () => {
         fetchTimeData();
     }, []);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTimeData(prevTimeData => {
+                if (prevTimeData) {
+                    return {
+                        ...prevTimeData,
+                        datetime: new Date(prevTimeData.datetime.getTime() + 1000)
+                    };
+                }
+                return prevTimeData;
+            });
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [timeData]);
+
     return (
-        <div>
+        <div className="clock-container">
             {timeData ? (
-                <div>
-                    <h3>Local Time</h3>
-                    <p>{timeData.datetime.toLocaleString()}</p>
-                    <p>{timeData.timezone}</p>
+                <div className="clock">
+                    <div className="time">
+                        {timeData.datetime.toLocaleTimeString('en-US', { hour12: false })}
+                    </div>
+                    <div className="timezone">
+                        {timeData.timezone}
+                    </div>
                 </div>
             ) : (
                 <div>

@@ -33,6 +33,11 @@
   padding: 20px; /* Adjust as needed */
 }
 
+.team {
+  display: contents;
+  width: 100%;
+}
+
 
 ::-webkit-scrollbar {
   width: 10px;

@@ -1,14 +1,12 @@
 import React, { useContext } from 'react';
 import { Box, Button, Typography, useTheme, Grid, Card, CardContent } from '@mui/material';
 import { ColorModeContext, tokens } from '../theme';
-// Charts
+//Charts
 import DashboardPieChart from '../components/Charts/DashboardPieChart';
 import DashboardDoughnutChart from '../components/Charts/DashboardDoughnutChart';
 import DashboardBarChart from '../components/Charts/DashboardBarChart';
 import DashboardLineChart from '../components/Charts/DashboardLineChart';
 import StatBox from '../components/StatBox'; // Assuming StatBox is available
-import Weather from '../components/Weather/Weather';
-import Time from '../components/Time/Time';
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -17,7 +15,7 @@ const Dashboard = () => {
 
   return (
     <Box sx={{ width: '100%', padding: 2, backgroundColor: colors.primary[400] }}>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3} flexWrap="wrap">
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
         <Typography variant="h4" color={colors.grey[100]}>Dashboard Overview</Typography>
         <Button
           variant="contained"
@@ -28,7 +26,6 @@ const Dashboard = () => {
             fontSize: '14px',
             fontWeight: 'bold',
             padding: '10px 20px',
-            mt: { xs: 2, md: 0 }
           }}
         >
           Toggle {theme.palette.mode === 'light' ? 'Dark' : 'Light'} Mode
@@ -36,74 +33,46 @@ const Dashboard = () => {
       </Box>
 
       {/* New Row with Smaller Cards */}
-      <Grid container spacing={3} mb={6}>
-        <Grid item xs={12} sm={6} md={3}>
-          <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-            <Card sx={{ backgroundColor: colors.primary[400], mb: 2 }}>
-              <CardContent>
-                <StatBox title="12,361" subtitle="Emails Sent" progress="0.75" increase="+14%" />
-              </CardContent>
-            </Card>
-            <Card sx={{ backgroundColor: colors.primary[400], flex: 1 }}>
-              <CardContent>
-                <Typography variant="h5" sx={{ color: colors.grey[100] }}>Total Views</Typography>
-                <Typography variant="subtitle1" sx={{ color: colors.grey[300] }}>All Platforms</Typography>
-                <DashboardPieChart />
-                <Typography variant="h3" sx={{ color: colors.grey[100], textAlign: 'right' }}>8,942,000</Typography>
-              </CardContent>
-            </Card>
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-            <Card sx={{ backgroundColor: colors.primary[400], mb: 2 }}>
-              <CardContent>
-                <StatBox title="431,225" subtitle="Sales Obtained" progress="0.50" increase="+21%" />
-              </CardContent>
-            </Card>
-            
-            <Card sx={{ backgroundColor: colors.primary[400], flex: 1, marginBottom: 2}}>
-              <CardContent>
-                <Typography variant="h5" sx={{ color: colors.grey[100] }}>Total Views</Typography>
-                <Typography variant="subtitle1" sx={{ color: colors.grey[300] }}>All Platforms</Typography>
-                <DashboardLineChart />
-                <Typography variant="h3" sx={{ color: colors.grey[100], textAlign: 'right' }}>8,942,000</Typography>
-              </CardContent>
-              </Card>
-              
-              <Card sx={{ backgroundColor: colors.primary[400], flex: 1 }}>
-              <CardContent>
-                <Typography variant="h5" sx={{ color: colors.grey[100] }}>Total Views</Typography>
-                <Typography variant="subtitle1" sx={{ color: colors.grey[300] }}>All Platforms</Typography>
-                <DashboardLineChart />
-                <Typography variant="h3" sx={{ color: colors.grey[100], textAlign: 'right' }}>8,942,000</Typography>
-              </CardContent>
-            </Card>
-            
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-            <Card sx={{ backgroundColor: colors.primary[400], mb: 2 }}>
-              <CardContent>
-                <StatBox />
-                <Time />
-              </CardContent>
-            </Card>
-            <Card sx={{ backgroundColor: colors.primary[400], flex: 1 }}>
-              <CardContent>
-                <Typography variant="h5" sx={{ color: colors.grey[100] }}>Sub Views</Typography>
-                <Typography variant="subtitle1" sx={{ color: colors.grey[300] }}>All Platforms</Typography>
-                <DashboardDoughnutChart />
-                <Typography variant="h3" sx={{ color: colors.grey[100], textAlign: 'right' }}>8,942,000</Typography>
-              </CardContent>
-            </Card>
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ backgroundColor: colors.primary[400], height: '100%' }}>
+      <Grid container spacing={3} mb={3}>
+        <Grid item xs={12} md={2}>
+          <Card sx={{ backgroundColor: colors.primary[400] }}>
             <CardContent>
-              <Weather />
+              <StatBox title="12,361" subtitle="Emails Sent" progress="0.75" increase="+14%" />
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={2}>
+          <Card sx={{ backgroundColor: colors.primary[400] }}>
+            <CardContent>
+              <StatBox title="431,225" subtitle="Sales Obtained" progress="0.50" increase="+21%" />
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={2}>
+          <Card sx={{ backgroundColor: colors.primary[400] }}>
+            <CardContent>
+              <StatBox title="32,441" subtitle="New Clients" progress="0.30" increase="+5%" />
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={2}>
+          <Card sx={{ backgroundColor: colors.primary[400] }}>
+            <CardContent>
+              <StatBox title="1,325,134" subtitle="Traffic Received" progress="0.80" increase="+43%" />
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={2}>
+          <Card sx={{ backgroundColor: colors.primary[400] }}>
+            <CardContent>
+              <StatBox title="72,345" subtitle="Orders Placed" progress="0.60" increase="+10%" />
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={2}>
+          <Card sx={{ backgroundColor: colors.primary[400] }}>
+            <CardContent>
+              <StatBox title="83,123" subtitle="Revenue" progress="0.90" increase="+32%" />
             </CardContent>
           </Card>
         </Grid>
@@ -125,23 +94,19 @@ const Dashboard = () => {
         {/* Card 2 */}
         <Grid item xs={12} md={3}>
           <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-            <Card sx={{ backgroundColor: colors.primary[400], flex: 1, mb: 2 }}>
+            <Card sx={{ backgroundColor: colors.primary[400], flex: 1, marginBottom: 2 }}>
               <CardContent>
                 <Typography variant="h5" sx={{ color: colors.grey[100] }}>Total Views</Typography>
                 <Typography variant="subtitle1" sx={{ color: colors.grey[300] }}>All Platforms</Typography>
-                <Box sx={{ height: '200px' }}>
-                  <DashboardLineChart />
-                </Box>
+                <DashboardLineChart />
                 <Typography variant="h3" sx={{ color: colors.grey[100], textAlign: 'right' }}>8,942,000</Typography>
               </CardContent>
             </Card>
-            <Card sx={{ backgroundColor: colors.primary[400], flex: 1, mt: 2 }}>
+            <Card sx={{ backgroundColor: colors.primary[400], flex: 1, marginTop: 2 }}>
               <CardContent>
                 <Typography variant="h5" sx={{ color: colors.grey[100] }}>Total Views</Typography>
                 <Typography variant="subtitle1" sx={{ color: colors.grey[300] }}>All Platforms</Typography>
-                <Box sx={{ height: '200px' }}>
-                  <DashboardLineChart />
-                </Box>
+                <DashboardLineChart />
                 <Typography variant="h3" sx={{ color: colors.grey[100], textAlign: 'right' }}>8,942,000</Typography>
               </CardContent>
             </Card>
@@ -198,14 +163,6 @@ const Dashboard = () => {
                 <Card sx={{ backgroundColor: colors.primary[400], height: '100%' }}>
                   <CardContent>
                     <StatBox title="32,441" subtitle="New Clients" progress="0.30" increase="+5%" />
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={12}>
-                <Card sx={{ backgroundColor: colors.primary[400], height: '100%' }}>
-                  <CardContent>
-                    <Typography variant="h5" sx={{ color: colors.grey[100] }}>Additional Data</Typography>
-                    <DashboardPieChart />
                   </CardContent>
                 </Card>
               </Grid>

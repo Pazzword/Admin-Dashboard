@@ -14,6 +14,7 @@ import Sidebar from "./components/SidebarNavbar/Sidebar";
 import Topbar from './components/SidebarNavbar/Topbar';
 import Note from "./pages/Notes";
 import LineChart from "./components/LineChart";
+import Team from './components/team';
 
 function Logout() {
   localStorage.clear();
@@ -89,6 +90,17 @@ function App() {
                       <div className="protected-content">
                         <Sidebar isSidebar={isSidebar} className="sidebar" />
                         <LineChart />
+                      </div>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/team"
+                  element={
+                    <ProtectedRoute>
+                      <div className="protected-content">
+                        <Sidebar isSidebar={isSidebar} className="sidebar" />
+                        <Team />
                       </div>
                     </ProtectedRoute>
                   }

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import api from "../api";
+import api, { getUserInfo } from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
-import "../styles/Form.css"
+import "../styles/Form.css";
 import LoadingIndicator from "./LoadingIndicator";
 
 function Form({ route, method }) {
@@ -18,25 +18,31 @@ function Form({ route, method }) {
         e.preventDefault();
 
         try {
-            const res = await api.post(route, { username, password })
+            const res = await api.post(route, { username, password });
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-                navigate("/")
+
+                // Fetch user info and store it in localStorage
+                const userInfoRes = await getUserInfo();
+                console.log("User info:", userInfoRes);  // Debugging line
+                localStorage.setItem("username", userInfoRes.username);
+
+                navigate("/");
             } else {
-                navigate("/login")
+                navigate("/login");
             }
         } catch (error) {
-            alert(error)
+            alert(error);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     };
 
-    // Added function to navigate to the registration page
     const handleNavigateToRegister = () => {
         navigate("/register");
     };
+
     const handleNavigateToLogin = () => {
         navigate("/login");
     };
@@ -71,7 +77,6 @@ function Form({ route, method }) {
                 >
                     Register
                 </button>
-                
             )}
         </form>
     );
