@@ -13,4 +13,5 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('bigquery_integration/', include('bigquery_integration.urls')),
     path('api/datatable/', include('datatable_api.urls')),
+    path('api/', include('time_api.urls')),
 ]

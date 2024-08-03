@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import DashboardOutlined from "@mui/icons-material/DashboardOutlined";
+import SaveOutlined from "@mui/icons-material/SaveOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -16,6 +16,8 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import catImage from '../../assets/cat.jpeg';
+
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -40,6 +42,14 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []);
 
   return (
     <Box
@@ -96,7 +106,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={catImage}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -107,7 +117,7 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Anzor
+                  {username}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
                   VIP ENGINEER
@@ -120,7 +130,7 @@ const Sidebar = () => {
             <Item
               title="Dashboard"
               to="/dashboard"
-              icon={<HomeOutlinedIcon />}
+              icon={<DashboardOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -135,7 +145,7 @@ const Sidebar = () => {
             <Item
               title="Project Data"
               to="/data-table"
-              icon={<PeopleOutlinedIcon />}
+              icon={<SaveOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -162,8 +172,8 @@ const Sidebar = () => {
               Pages
             </Typography>
             <Item
-              title="Profile Form"
-              to="/form"
+              title="Team"
+              to="/team"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

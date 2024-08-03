@@ -4,6 +4,10 @@ from rest_framework import generics
 from .serializers import UserSerializer, NoteSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Note
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+
+
 
 
 class NoteListCreate(generics.ListCreateAPIView):
@@ -34,3 +38,11 @@ class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_user_info(request):
+    user = request.user
+    serializer = UserSerializer(user)
+    return Response(serializer.data)

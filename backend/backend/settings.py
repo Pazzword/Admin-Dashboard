@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'bigquery_integration',
-    'datatable_api'
+    'datatable_api',
+    'time_api'
 ]
 
 MIDDLEWARE = [

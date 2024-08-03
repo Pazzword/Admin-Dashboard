@@ -12,6 +12,16 @@ from bigquery_integration.models import TotalViewsModel
     }
     return JsonResponse(data_dict)'''
 
+
+# Charts JS Line Chart
+def charts_line(request):
+    return JsonResponse(
+        {
+            "labels": ["January", "February", "March", "April", "May", "June", "July"],
+            "data": [randint(1, 90000) for _ in range(7)],
+        }
+    )
+
 # Pie Chart
 def total_views(request):
     queryset = TotalViewsModel.objects.all()

@@ -20,4 +20,14 @@ api.interceptors.request.use(
   }
 );
 
+export const getUserInfo = async () => {
+  try {
+    const response = await api.get("api/user/info/");
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch user info:", error);
+    throw error;
+  }
+};
+
 export default api;
