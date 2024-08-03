@@ -15,6 +15,8 @@ import Topbar from './components/SidebarNavbar/Topbar';
 import Note from "./pages/Notes";
 import LineChart from "./components/LineChart";
 import Team from './components/team';
+import ProfileForm from "./components/ProfileForm";
+import Contacts from "./components/Contacts";
 
 function Logout() {
   localStorage.clear();
@@ -101,6 +103,28 @@ function App() {
                       <div className="protected-content">
                         <Sidebar isSidebar={isSidebar} className="sidebar" />
                         <Team />
+                      </div>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/form"
+                  element={
+                    <ProtectedRoute>
+                      <div className="protected-content">
+                        <Sidebar isSidebar={isSidebar} className="sidebar" />
+                        <ProfileForm />
+                      </div>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/contacts"
+                  element={
+                    <ProtectedRoute>
+                      <div className="protected-content">
+                        <Sidebar isSidebar={isSidebar} className="sidebar" />
+                        <Contacts />
                       </div>
                     </ProtectedRoute>
                   }

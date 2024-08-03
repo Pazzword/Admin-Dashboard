@@ -1,34 +1,70 @@
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataTeam } from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+import axios from 'axios';
 import Header from "../../components/Header";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const TeamForm = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [profiles, setProfiles] = useState([]);
+
+  useEffect(() => {
+    const fetchProfiles = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/profiles/');
+        console.log('Raw response data:', response.data);
+
+        const sanitizedData = response.data.map((profile) => ({
+          id: profile.id,
+          first_name: profile.first_name || 'N/A',
+          last_name: profile.last_name || 'N/A',
+          email: profile.email || 'N/A',
+          contact: profile.contact || 'N/A',
+          address1: profile.address1 || 'N/A',
+          address2: profile.address2 || 'N/A',
+        }));
+
+        console.log('Sanitized Data:', sanitizedData);
+        setProfiles(sanitizedData);
+      } catch (error) {
+        console.error('Error fetching profiles:', error);
+      }
+    };
+
+    fetchProfiles();
+  }, []);
+
+  useEffect(() => {
+    console.log('Profiles state:', profiles);
+  }, [profiles]);
+
+  const handleDelete = async (id) => {
+    try {
+      console.log(`Attempting to delete profile with ID: ${id}`);
+      await axios.delete(`http://127.0.0.1:8000/api/profile/${id}/delete/`);
+      console.log(`Profile with ID ${id} deleted successfully`);
+      setProfiles(profiles.filter((profile) => profile.id !== id));
+    } catch (error) {
+      console.error('Error deleting profile:', error);
+    }
+  };
+
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "first_name",
+      headerName: "First Name",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
-    },
-    {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "last_name",
+      headerName: "Last Name",
       flex: 1,
+      cellClassName: "name-column--cell",
     },
     {
       field: "email",
@@ -36,44 +72,42 @@ const TeamForm = () => {
       flex: 1,
     },
     {
-      field: "accessLevel",
-      headerName: "Access Level",
+      field: "contact",
+      headerName: "Contact Number",
       flex: 1,
-      renderCell: ({ row: { access } }) => {
-        return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              access === "admin"
-                ? colors.greenAccent[600]
-                : access === "manager"
-                ? colors.greenAccent[700]
-                : colors.greenAccent[700]
-            }
-            borderRadius="4px"
-          >
-            {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-            {access === "manager" && <SecurityOutlinedIcon />}
-            {access === "user" && <LockOpenOutlinedIcon />}
-            <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {access}
-            </Typography>
-          </Box>
-        );
-      },
+    },
+    {
+      field: "address1",
+      headerName: "Address 1",
+      flex: 1,
+    },
+    {
+      field: "address2",
+      headerName: "Address 2",
+      flex: 1,
+    },
+    {
+      field: "actions",
+      headerName: "Actions",
+      type: 'actions',
+      width: 100,
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          label="Delete"
+          onClick={() => handleDelete(params.id)}
+        />
+      ],
     },
   ];
 
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Team Members" />
-      <Box
+      <Header title="PROFILES" subtitle="User Profiles" />
+      <Box 
         m="40px 0 0 0"
-        height="75vh"
+        height="100vh"
+        width={1610}
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -100,7 +134,16 @@ const TeamForm = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
+        {profiles.length > 0 ? (
+          <DataGrid 
+            checkboxSelection 
+            rows={profiles}
+            columns={columns}
+            getRowId={(row) => row.id}
+          />
+        ) : (
+          <Typography>No profiles to display</Typography>
+        )}
       </Box>
     </Box>
   );

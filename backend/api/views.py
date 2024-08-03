@@ -8,8 +8,6 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
 
-
-
 class NoteListCreate(generics.ListCreateAPIView):
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated]

@@ -143,16 +143,16 @@ const Sidebar = () => {
               Data
             </Typography>
             <Item
-              title="Project Data"
+              title="Data Table"
               to="/data-table"
               icon={<SaveOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="User Data"
-              to="/user-data"
-              icon={<ContactsOutlinedIcon />}
+              title="Contacts"
+              to="/contacts"
+              icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -169,8 +169,15 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Pages
+              Profiles
             </Typography>
+            <Item
+              title="Create Profile"
+              to="/form"
+              icon={<ContactsOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Item
               title="Team"
               to="/team"
@@ -178,13 +185,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            
             <Item
               title="FAQ Page"
               to="/faq"
