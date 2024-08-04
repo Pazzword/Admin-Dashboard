@@ -13,7 +13,8 @@ import DataTable from "./components/DataTable/DataTable";
 import Sidebar from "./components/SidebarNavbar/Sidebar"; 
 import Topbar from './components/SidebarNavbar/Topbar';
 import Note from "./pages/Notes";
-import LineChart from "./components/LineChart";
+import LineChart from "./components/NivoCharts/line";
+import Bar from "./components/NivoCharts/bar";
 import Team from './components/team';
 import ProfileForm from "./components/ProfileForm";
 import Contacts from "./components/Contacts";
@@ -41,6 +42,8 @@ function App() {
             <Topbar setIsSidebar={setIsSidebar} className="topbar" />
             <div className="main-container">
               <Routes>
+                {/*-----------------------------*/}
+                {/* DASHBOARD OR HOME PAGE*/}
                 <Route
                   path="/"
                   element={
@@ -63,6 +66,8 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                {/* END OF DASHBOARD OR HOME PAGE*/}
+                {/*-----------------------------*/}
                 <Route
                   path="/data-table"
                   element={
@@ -85,6 +90,8 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                {/*-----------------------------*/}
+                {/*START OF NIVO CHARTS*/}
                 <Route
                   path="/line"
                   element={
@@ -96,6 +103,20 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route
+                  path="/bar"
+                  element={
+                    <ProtectedRoute>
+                      <div className="protected-content">
+                        <Sidebar isSidebar={isSidebar} className="sidebar" />
+                        <Bar />
+                      </div>
+                    </ProtectedRoute>
+                  }
+                />
+                {/* END OF NIVO CHARTS */}
+                {/*-----------------------------*/}
+                {/* START OF PROFILE FORMS */}
                 <Route
                   path="/team"
                   element={
@@ -118,6 +139,8 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                {/* END OF PROFILE FORMS */}
+                {/*-----------------------------*/}
                 <Route
                   path="/contacts"
                   element={

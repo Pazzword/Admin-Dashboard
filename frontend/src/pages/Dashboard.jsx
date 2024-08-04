@@ -6,7 +6,8 @@ import DashboardPieChart from '../components/Charts/DashboardPieChart';
 import DashboardDoughnutChart from '../components/Charts/DashboardDoughnutChart';
 import DashboardBarChart from '../components/Charts/DashboardBarChart';
 import DashboardLineChart from '../components/Charts/DashboardLineChart';
-import StatBox from '../components/StatBox'; // Assuming StatBox is available
+import StatBox from '../components/StatBox';
+import ModStatBox  from '../components/ModStatBox';
 import Weather from '../components/Weather/Weather';
 import Time from '../components/Time/Time';
 
@@ -86,7 +87,7 @@ const Dashboard = () => {
           <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
             <Card sx={{ backgroundColor: colors.primary[400], mb: 2 }}>
               <CardContent>
-                <StatBox />
+                <ModStatBox />
                 <Time />
               </CardContent>
             </Card>
