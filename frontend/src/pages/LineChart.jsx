@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import Header from "../components/Header";
-import LineChart from "../components/LineChart";
+import LineChart from "../components/NivoCharts/line/LineChart";
 
 const Line = () => {
   return (

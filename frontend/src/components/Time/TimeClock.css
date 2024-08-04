@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+.time-clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  font-family: 'Roboto Mono', monospace;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 50px;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.time-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 20px rgba(51, 255, 204, 0.2);
+}
+
+.city {
+  font-size: 18px;
+  font-weight: 600;
+  color: #33ffcc;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.time {
+  font-size: 32px;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.green-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #33ffcc;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px #33ffcc;
+}
+
+.time-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(51, 255, 204, 0.3);
+}
+
+@media (max-width: 768px) {
+  .time-clock {
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .time-box {
+    margin: 20px 0;
+  }
+}
+
+.time-clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #0f0f1a;
+  padding: 20px;
+}

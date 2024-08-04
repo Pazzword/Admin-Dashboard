@@ -1,27 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
 .clock-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: flex;
+    min-height: 70%;
     color: white;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .clock {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
 
+.clock:hover {
+    transform: translateY(-5px);
 }
 
 .time {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    color: #33ffcc;
+    animation: pulse 1s infinite;
 }
 
 .timezone {
-    font-size: 18px;
+    font-size: 14px;
     color: #bbb;
+}
+
+.loading, .error {
+    font-size: 14px;
+    color: #bbb;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }

@@ -19,9 +19,19 @@ const ProfileForm = () => {
       console.error('No token found');
       return;
     }
-  
+
+    // Map form values to match the expected field names in the backend
+    const payload = {
+      first_name: values.firstName,
+      last_name: values.lastName,
+      email: values.email,
+      contact: values.contact,
+      address1: values.address1,
+      address2: values.address2,
+    };
+
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/profile/create/', values, {
+      const response = await axios.post('http://127.0.0.1:8000/api/profile/create/', payload, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

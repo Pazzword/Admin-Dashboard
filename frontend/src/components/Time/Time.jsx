@@ -52,12 +52,12 @@ const Time = () => {
                     </div>
                 </div>
             ) : (
-                <div>
+                <div className="loading">
                     <p>Loading...</p>
                 </div>
             )}
             {error && (
-                <div>
+                <div className="error">
                     <p>{error}</p>
                 </div>
             )}
